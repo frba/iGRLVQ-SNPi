@@ -1,0 +1,35 @@
+#include "LHSParameters.h"
+
+class MyParameters: public LHSParameters {
+public:
+        
+    Parameter<int> N;
+    LHSParameter<double> p1;
+    LHSParameter<float> p2;
+    LHSParameter<int> p3;
+
+    MyParameters() {
+        comments = "Test float Parameters";
+        section = "Teste";
+
+        //make parameters persistent:
+        addParameterD(N, "Number of samples");
+        addParameterD(p1, "Parametro 1");
+        addParameterD(p2, "Parametro 2");
+        addParameterD(p3, "Parametro 3");
+
+        //Set default ranges and values
+        N = 50;
+        p1.setRange(5, 15) = 10;
+        p2.setRange(50, 150) = 100;
+        p3.setRange(500, 1500) = 1000;
+        
+        //Add parameters to latin hypercube sampling:
+        addParameterToLHS(p1);
+        addParameterToLHS(p2);
+        addParameterToLHS(p3);
+    }
+};
+
+
+
